@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-const Index: React.FC = () => {
+const CreatePercentageIncrease: React.FC = () => {
   const [result, setResult] = useState<number>(0);
 
   const startingValueRef = useRef<HTMLInputElement>(null);
@@ -50,4 +50,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default CreatePercentageIncrease;
