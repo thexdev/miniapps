@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>It's Mini Apps - Welcome</title>
+        <title>It&apos;s Mini Apps - Welcome</title>
       </Head>
       <main className="px-3 mx-auto py-10 lg:px-0 lg:max-w-5xl">
         <h1 className="mb-12 text-4xl font-semibold lg:text-6xl lg:mb-32">
@@ -17,7 +18,9 @@ const Home: NextPage = () => {
             <a className="flex">
               <div className="mr-3">
                 <div className="p-3 bg-gray-100 rounded-lg">
-                  <img
+                  <Image
+                    width="48"
+                    height="48"
                     src="/icons8-profit-analysis-48.png"
                     alt="profit analysis"
                   />
