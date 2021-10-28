@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { useRef, useState } from 'react';
+import { FocusEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import Page from '../../components/Page';
 
 const CreatePercentageIncrease: NextPage = () => {
@@ -22,6 +22,18 @@ const CreatePercentageIncrease: NextPage = () => {
     }
   };
 
+  const clearInputIfZero: FocusEventHandler<HTMLInputElement> = (event) => {
+    if (event.currentTarget.value === '0') {
+      event.currentTarget.value = '';
+    }
+  };
+
+  const clearAllInputs: MouseEventHandler<HTMLButtonElement> = (event) => {
+    startingValueRef.current!.value = '';
+    endValueRef.current!.value = '';
+    setResult(0);
+  };
+
   return (
     <Page title="Calculate Percentage Increase">
       <div className="mx-auto max-w-2xl">
@@ -29,8 +41,8 @@ const CreatePercentageIncrease: NextPage = () => {
           <div className="mb-3 p-5 h-32 border-b bg-gray-100 text-3xl">
             {result.toFixed(2)}%
           </div>
-          <div className="px-2 grid grid-cols-1 gap-3 lg:grid-cols-2">
-            <div>
+          <div className="px-2 grid grid-cols-2 gap-3">
+            <div className="col-span-2">
               <label className="mb-1 block text-sm">Starting value</label>
               <input
                 className="py-3 px-5 bg-gray-100 rounded w-full text-sm focus:outline-none"
@@ -38,9 +50,11 @@ const CreatePercentageIncrease: NextPage = () => {
                 ref={startingValueRef}
                 onBlur={setInputToZero}
                 defaultValue={0}
+                placeholder="0"
+                onFocus={clearInputIfZero}
               />
             </div>
-            <div>
+            <div className="col-span-2">
               <label className="mb-1 block text-sm">End value</label>
               <input
                 className="py-3 px-5 bg-gray-100 rounded w-full text-sm focus:outline-none"
@@ -48,14 +62,24 @@ const CreatePercentageIncrease: NextPage = () => {
                 ref={endValueRef}
                 onBlur={setInputToZero}
                 defaultValue={0}
+                placeholder="0"
+                onFocus={clearInputIfZero}
               />
             </div>
-            <div className="lg:col-span-2">
+            <div>
               <button
-                className="py-2 w-full block bg-indigo-500 text-white"
+                className="py-2 w-full block bg-indigo-500 text-white focus:outline-none"
                 onClick={calculatePercentage}
               >
                 calculate
+              </button>
+            </div>
+            <div>
+              <button
+                className="py-2 w-full block bg-red-500 text-white focus:outline-none"
+                onClick={clearAllInputs}
+              >
+                clear
               </button>
             </div>
           </div>
