@@ -1,44 +1,30 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
+import AppCard from '../components/AppCard';
+import Page from '../components/Page';
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>It&apos;s Mini Apps - Welcome</title>
-      </Head>
+    <Page title="It's Mini Apps - Welcome">
       <main className="px-3 mx-auto py-10 lg:px-0 lg:max-w-5xl">
         <h1 className="mb-12 text-4xl font-semibold lg:text-6xl lg:mb-32">
           Welcome!
         </h1>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-          <Link href="/calculate-percentage-increase">
-            <a className="flex">
-              <div className="mr-3">
-                <div className="p-3 bg-gray-100 rounded-lg">
-                  <Image
-                    width="48"
-                    height="48"
-                    src="/icons8-profit-analysis-48.png"
-                    alt="profit analysis"
-                  />
-                </div>
-              </div>
-              <div>
-                <h2 className="mb-2 font-semibold lg:text-lg">
-                  Calculate Percentage Increase
-                </h2>
-                <p className="text-sm text-gray-500">
-                  Calculate how much a variable increased in percentage.
-                </p>
-              </div>
-            </a>
-          </Link>
+          <AppCard
+            href="/calculate-percentage-increase"
+            icon="/icons8-profit-analysis-48.png"
+            name="Calculate Percentage Increase"
+            description="Calculate how much a variable increased in percentage."
+          />
+          <AppCard
+            href="/what-is-my-zodiac"
+            icon="/icons8-crystal-ball-48.png"
+            name="What Is My Zodiac"
+            description="Find out your zodiac sign based on your birthday."
+          />
         </div>
       </main>
-    </>
+    </Page>
   );
 };
 
